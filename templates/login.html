@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login con Bootstrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="bg-coscuro">
+
+<div class="container pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-vino text-white">Iniciar Sesión</div>
+                <div class="card-body">
+                    <form action="/autenticar" method="POST">
+                        <div class="form-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña">
+                        </div>
+                        <button type="submit" class="btn bg-vino--claro btn-block text-light">Iniciar Sesión</button>
+                        <a class="btn bg-vino--claro btn-block text-light" href="/registrarse">Regístrate aquí</a></small>
+                    </form>
+
+                    {% if error %}
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error de inicio de sesión',
+                            text: '{{ error }}',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                    </script>
+                    {% endif %}
+                                      
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

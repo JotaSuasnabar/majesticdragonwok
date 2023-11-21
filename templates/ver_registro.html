@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ver registro</title>
+</head>
+<body>
+    <h1>Registros</h1>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>Comida</th>
+            <th>Id_orden</th>
+            <th>Cantidad</th>
+            <th>P_Unitario</th>
+            <th>P_Final</th>
+            <th>Extras</th>
+            <th>Fecha</th>
+        </tr>
+        {% for registro in registros %}
+        <tr>
+            <td>{{ registro[0] }}</td>
+            <td>{{ registro[1] }}</td>
+            <td>{{ registro[2] }}</td>
+            <td>{{ registro[3] }}</td>
+            <td>{{ registro[4] }}</td>
+            <td>{{ registro[5] }}</td>
+            <td>{{ registro[6] }}</td>
+            <td>{{ registro[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

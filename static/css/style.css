@@ -1,0 +1,62 @@
+html, body {
+    height: 100%;
+    background-color: #2A2A2A;
+}
+
+.bg-nav{
+    background-color: #1D1D1D;
+}
+
+.bg-vino{
+    background-color: #3D1B1B;
+}
+
+.bg-vino--claro{
+    background-color: #8a4242;
+}
+
+.imagen--titulo{
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.tm-f{
+    font-size: 1.2rem;
+}
+
+.bg-coscuro{
+    background-color: #2A2A2A;
+}
+
+.activo{
+    background-color: #3D1B1B;
+    color: white;
+}
+
+.ahover:hover{
+    background-color: #3D1B1B;
+    color: white;
+}
+
+.c-white{
+    color: white;
+}
+
+h2{
+    color: #C53434;
+    font-size: 2.5rem;
+}
+.navbar-toggler-icon {
+    color: #d9ff00; /* Cambia esto al color que prefieras */
+}
+
+.campo__formulario{
+    width: 45rem;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.campo__formulario--form{
+    padding: 25px 25px;
+}

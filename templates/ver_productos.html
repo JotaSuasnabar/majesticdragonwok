@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos Producto</title>
+</head>
+<body>
+    <h1>Datos Producto</h1>
+    <table border="1">
+        <tr>
+            <th>Fecha</th>
+            <th>Comida</th>
+            <th>Cantidad</th>
+            <th>Dias de semana</th>
+        </tr>
+        {% for dato in datosP %}
+        <tr>
+            <td>{{ dato[0] }}</td>
+            <td>{{ dato[1] }}</td>
+            <td>{{ dato[2] }}</td>
+            <td>{{ dato[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

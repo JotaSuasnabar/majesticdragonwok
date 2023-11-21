@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+<body class="h-100">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Header Horizontal -->
+            <div class="col-md-12 bg-vino py-4">
+                <img class="imagen--titulo" src="../static/img/logo.png" alt="">
+            </div>            
+    
+            <!-- Barra de Navegación Vertical -->
+            <div class="col-md-2 bg-nav d-md-flex h-100">
+                <nav class="navbar navbar-expand-lg navbar-light flex-column">
+                    <button class="navbar-toggler bg-vino" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-item">
+                                <a style="color: white;" class="nav-link mt-5 tm-f activo " href="#">Predicción de Demanda</a>
+                            </li>
+                            <li class="nav-item c-white">
+                                <a style="color: white;" class="nav-link mt-5 tm-f ahover" href="#">Segmentación de clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a style="color: white;" class="nav-link mt-5 tm-f ahover" href="#">Recomendación de productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a style="color: white;" class="nav-link mt-5 tm-f ahover" href="#">Gestion de Usuarios</a>
+                            </li>
+                            <li class="nav-item mt-5">
+                                <a style="color: white;" class="nav-link mt-5 tm-f ahover" href="/logout">Salir</a>
+                            </li>                            
+                            <!-- Añade más elementos según sea necesario -->
+                        </ul>
+                    </div>
+                </nav>
+            </div>            
+    
+            <!-- Contenido Principal -->
+            <div class="col-md-10 h-100">
+
+                <div class="d-flex justify-content-around align-items-center mt-4">
+                    <div class="text-center">
+                        <h2 >Demanda</h2>
+                    </div>
+                
+                    <button id="mostrarFormulario" class="btn btn-primary">Predecir</button>
+                </div>
+                
+                <!-- Aquí se mostrará el formulario cuando se presione el botón -->
+                <div class="campo__formulario" id="formulario" style="display:none; background-color: white; z-index: 9999; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin-top: 10rem;">
+                    <form class="campo__formulario--form" action="/form-detalles" method="POST">
+                        <h3>Tiempo de Aprendizaje:</h3>
+                        <div class="d-flex mt-4">
+                            <div class="form-group d-flex">
+                                <label class="w-100 mt-1" for="inicio">Fecha de Inicio:</label>
+                                <input type="date" class="form-control ml-2" id="Tinicio" name="Tinicio">
+                            </div>
+                            <div class="form-group d-flex ml-5">
+                                <label class="w-100 mt-1" for="fin">Fecha de Fin:</label>
+                                <input type="date" class="form-control ml-2" id="Tfin" name="Tfin">
+                            </div>
+                        </div>
+                        <div class="form-group d-flex ml-5">
+                            <label class="form-check-label" for="Datos">Todos los Datos</label>
+                            <input class="form-check-input" type="radio" name="TDatos" id="TDatos" value="todosD" onclick="toggleCampos()">
+                        </div>
+
+                        <h3 class="mt-5">Periodo de Predicción:</h3>
+                        <div class="d-flex mt-4">
+                            <div class="form-group d-flex">
+                                <label class="w-100 mt-1" for="inicio">Fecha de Inicio:</label>
+                                <input type="date" class="form-control ml-2" id="Pinicio" name="Pinicio">
+                            </div>
+                            
+                            <div class="form-group d-flex ml-5">
+                                <label for="periodo">Periodo:</label>
+                                <select class="form-control ml-2" id="periodo" name="periodo">
+                                    <option value="7">1 Semana</option>
+                                    <option value="14">2 Semanas</option>   
+                                    <option value="21">3 Semanas</option>
+                                    <option value="28">1 Mes</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-5">
+                            <button type="submit" class="btn bg-vino mr-5 text-light">Enviar</button>
+                        </div>
+                        
+                    </form>
+                    
+                </div> <!--Fin Formulario-->
+
+                <div class="row">
+                    {% for nombre_archivo_1 in nombres_archivos_1 %}
+                        <div class="col-md-6 mt-5">
+                            <div class="grafico card">
+                                <img src="{{ nombre_archivo_1 }}" alt="Gráfico de Predicciones 1" class="card-img-top">
+                            </div>
+                        </div>
+                
+                        {% if loop.index % 2 == 0 %}
+                            </div> <!-- Cerrar la fila actual después de cada segunda imagen -->
+                            <div class="row">
+                        {% endif %}
+                    {% endfor %}
+                
+                    {% for nombre_archivo_2 in nombres_archivos_2 %}
+                        <div class="col-md-6 mt-5">
+                            <div class="grafico card">
+                                <img src="{{ nombre_archivo_2 }}" alt="Gráfico de Predicciones 2" class="card-img-top">
+                            </div>
+                        </div>
+                
+                        {% if loop.index % 2 == 0 %}
+                            </div> <!-- Cerrar la fila actual después de cada segunda imagen -->
+                            <div class="row">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+
+
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var formulario = document.getElementById('formulario');
+            var mostrarFormulario = document.getElementById('mostrarFormulario');
+    
+            mostrarFormulario.addEventListener('click', function(event) {
+                formulario.style.display = 'block';
+                event.stopPropagation();
+            });
+    
+            document.addEventListener('click', function(event) {
+                var dentroDelFormulario = formulario.contains(event.target);
+                if (!dentroDelFormulario) {
+                    formulario.style.display = 'none';
+                }
+            });
+        });
+
+        function toggleCampos() {
+            var checkboxTodosDatos = document.getElementById('TDatos');
+            var campoTinicio = document.getElementById('Tinicio');
+            var campoTfin = document.getElementById('Tfin');
+
+            campoTinicio.readOnly = checkboxTodosDatos.checked;
+            campoTfin.readOnly = checkboxTodosDatos.checked;
+        }
+    </script>
+    
+</body>
+</html>
+                     
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ver registro</title>
+</head>
+<body>
+    <h1>Ver Registro</h1>
+    <form action="/ver_registro" method="get">
+        <input type="submit" value="Ver registro">
+    </form>
+    <form action="/datos_entrenamiento" method="get">
+        <input type="submit" value="Datos de Entrenamiento">
+    </form>
+    <form action="/generar_prediccion" method="get">
+        <input type="submit" value="Generar Predicción">
+    </form>
+    <form action="/ver_productos" method="get">
+        <input type="submit" value="Ver Productos">
+    </form> 
+    <form action="/generar_prediccion_productos" method="get">
+        <input type="submit" value="Generar Predicción Productos">
+    </form>    
+</body>
+</html>
+-->

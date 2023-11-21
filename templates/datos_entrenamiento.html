@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos Entrenamiento</title>
+</head>
+<body>
+    <h1>Datos Entrenamiento</h1>
+    <table border="1">
+        <tr>
+            <th>Fecha</th>
+            <th>Suma</th>
+        </tr>
+        {% for dato in datosE %}
+        <tr>
+            <td>{{ dato[0] }}</td>
+            <td>{{ dato[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
