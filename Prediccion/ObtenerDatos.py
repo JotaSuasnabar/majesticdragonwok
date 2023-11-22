@@ -25,7 +25,7 @@ class ObtenerDatos:
 
     @staticmethod
     def obtener_datos_entrenamiento(fecha_inicio, fecha_fin):
-        conexion = Conexion.conectar_bd('bstphlah0yvuxack5rrn-mysql.services.clever-cloud.com', 'u1a10jgnsclu57s5', 'yEUI4WtkQe0QgIvhBbhr', 'bstphlah0yvuxack5rrn')
+        conexion = Conexion.conectar_bd('sql5.freesqldatabase.com', 'sql5664118', '7DSQiuVlZH', 'sql5664118', port=3306)
         cursor = conexion.cursor()
         consulta = "SELECT fecha, SUM(p_total) FROM o_pedidos WHERE fecha BETWEEN %s AND %s GROUP BY fecha"
         cursor.execute(consulta, (fecha_inicio, fecha_fin))
@@ -39,7 +39,7 @@ class ObtenerDatos:
 
     @staticmethod
     def obtener_datos_entrenamiento_completo():
-        conexion = Conexion.conectar_bd('bstphlah0yvuxack5rrn-mysql.services.clever-cloud.com', 'u1a10jgnsclu57s5', 'yEUI4WtkQe0QgIvhBbhr', 'bstphlah0yvuxack5rrn')
+        conexion = Conexion.conectar_bd('sql5.freesqldatabase.com', 'sql5664118', '7DSQiuVlZH', 'sql5664118', port=3306)
         cursor = conexion.cursor()
         consulta = "SELECT fecha, SUM(p_total) FROM o_pedidos GROUP BY fecha"
         cursor.execute(consulta)
