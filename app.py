@@ -182,14 +182,3 @@ def ver_datos_productos():
 
 if __name__ == '__main__':
     app.run(debug=True)
-#linea115
-@app.route('/ver_registro')
-def ver_registro():
-    registros = ObtenerD.ver_registros()  # Llamada a la función ver_registros sin argumentos
-    return render_template('ver_registro.html', registros=registros)
-
-
-@app.route('/datos_entrenamiento')
-def ver_datos_entrenamiento():
-    datosE = ObtenerD.mostrar_datos_entrenamiento()  # Llamada a la función ver_registros sin argumentos
-    return render_template('datos_entrenamiento.html', datosE=datosE)
