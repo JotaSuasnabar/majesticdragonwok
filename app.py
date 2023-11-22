@@ -78,11 +78,33 @@ def dashboard():
 @app.route('/logout')
 @login_required
 def logout():
+    # Elimina las imágenes generadas antes de cerrar la sesión
+    eliminar_imagenes_generadas()
+    
     # Cierra la sesión del usuario
     logout_user()
 
     # Redirige al usuario a la página de inicio de sesión
     return redirect(url_for('index'))
+
+def eliminar_imagenes_generadas():
+    # Directorio donde se almacenan las imágenes generadas
+    directorio_imagenes = 'static/img/'
+
+    # Archivo que no se debe eliminar
+    archivo_no_eliminar = 'logo.png'
+
+    # Obtén la lista de archivos en el directorio
+    archivos = os.listdir(directorio_imagenes)
+
+    # Elimina cada archivo en el directorio, excepto el archivo_no_eliminar
+    for archivo in archivos:
+        if archivo != archivo_no_eliminar:
+            ruta_archivo = os.path.join(directorio_imagenes, archivo)
+            try:
+                os.remove(ruta_archivo)
+            except Exception as e:
+                print(f"Error al eliminar {ruta_archivo}: {str(e)}")
 
 ''''''''''''''''''''''''''''''''''''
 '''''''Registrarse'''''''
@@ -182,3 +204,14 @@ def ver_datos_productos():
 
 if __name__ == '__main__':
     app.run(debug=True)
+#linea115
+@app.route('/ver_registro')
+def ver_registro():
+    registros = ObtenerD.ver_registros()  # Llamada a la función ver_registros sin argumentos
+    return render_template('ver_registro.html', registros=registros)
+
+
+@app.route('/datos_entrenamiento')
+def ver_datos_entrenamiento():
+    datosE = ObtenerD.mostrar_datos_entrenamiento()  # Llamada a la función ver_registros sin argumentos
+    return render_template('datos_entrenamiento.html', datosE=datosE)
