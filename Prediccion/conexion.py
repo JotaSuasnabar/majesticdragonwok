@@ -2,13 +2,14 @@ import mysql.connector
 
 class Conexion:
     @staticmethod
-    def conectar_bd(host, usuario, contraseña, base_de_datos):
+    def conectar_bd(host, usuario, contraseña, base_de_datos, port=3306):
         try:
             conexion = mysql.connector.connect(
                 host=host,
                 user=usuario,
                 password=contraseña,
-                database=base_de_datos
+                database=base_de_datos,
+                port=port
             )
             if conexion.is_connected():
                 print(f'Conexión a la base de datos {base_de_datos} exitosa')
@@ -18,3 +19,4 @@ class Conexion:
             if conexion and conexion.is_connected():
                 conexion.close()
             return None
+

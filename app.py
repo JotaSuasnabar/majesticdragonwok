@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 
 # Configuración de la base de datos
-db = Conexion.conectar_bd('bstphlah0yvuxack5rrn-mysql.services.clever-cloud.com', 'u1a10jgnsclu57s5', 'yEUI4WtkQe0QgIvhBbhr', 'bstphlah0yvuxack5rrn')
+db = Conexion.conectar_bd('bstphlah0yvuxack5rrn-mysql.services.clever-cloud.com', 'u1a10jgnsclu57s5', 'yEUI4WtkQe0QgIvhBbhr', 'bstphlah0yvuxack5rrn', port=3306)
 ObtenerD = ObtenerDatos(db)
 EntrenarD = EntrenamiendoDatos()
 PrediccionD = Prediccion()
